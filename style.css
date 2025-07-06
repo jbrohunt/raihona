@@ -1,0 +1,158 @@
+/* === style.css === */
+/* Basic Reset & Body Styling */
+body {
+    font-family: sans-serif;
+    background-color: #f0e8d8; /* Light sandy background */
+    color: #3a2d1d; /* Dark brown text */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align container to the top */
+    min-height: 100vh;
+}
+
+h1 {
+    color: #7a5d3d; /* Muted brown for title */
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Improve image rendering for pixel art */
+img {
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
+/* Main Game Container */
+#game-container {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #e8dcb4; /* Slightly darker container background */
+    border: 3px solid #a08d7d; /* Brown border */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center; /* Center inline/inline-block children like text */
+}
+
+/* View Wrapper - CRITICAL for positioning */
+#view-wrapper {
+    position: relative; /* Absolutely crucial for positioning children */
+    width: 700px; /* Match map/scene width (adjust if backgrounds differ) */
+    height: 500px; /* Match map/scene height (adjust if backgrounds differ) */
+    overflow: hidden; /* Hide anything that goes outside */
+    border: 2px solid #7a5d3d; /* Inner border for the view */
+    background-color: #c8b89c; /* Default background if images fail */
+    margin: 0 auto; /* Center the wrapper */
+}
+
+/* Map & Scene Containers - Share common styles */
+#map-container,
+.scene-container {
+    position: absolute; /* Allow them to stack, only one visible */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover; /* Scale background to cover */
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Specific Backgrounds */
+#map-container { background-image: url('images/silkroad-map.png'); }
+#samarkand-scene-container { background-image: url('images/samarkand-scene.png'); }
+#kabul-scene-container { background-image: url('images/kabul-scene.png'); }
+#bukhara-scene-container { background-image: url('images/bukhara-scene.png'); }
+#yurt-scene-container { background-image: url('images/yurt-scene.png'); }
+
+
+/* Player & NPC Sprites */
+#raihona-sprite,
+.npc,
+.camel-sprite {
+    position: absolute; /* Essential for JS positioning */
+    max-width: 80px;
+    height: auto;
+}
+
+#character-kid { max-width: 60px; }
+
+/* Bobojon Specifics */
+#bobojon-container { position: absolute; bottom: 20px; right: 20px; z-index: 10; text-align: center; }
+#bobojon-sprite { position: relative; width: 70px; height: auto; }
+#bobojon-speech-bubble {
+    position: absolute; bottom: 85%; left: 50%;
+    transform: translateX(-50%); width: 150px;
+    background-color: rgba(255, 255, 255, 0.85);
+    border: 1px solid #a08d7d; border-radius: 8px;
+    padding: 8px; font-size: 0.85em; box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+#bobojon-speech-bubble p { margin: 0; color: #3a2d1d; }
+#bobojon-speech-bubble::after {
+    content: ""; position: absolute; bottom: -10px; left: 50%;
+    transform: translateX(-50%); border-width: 10px 10px 0 10px;
+    border-style: solid; border-color: rgba(255, 255, 255, 0.85) transparent transparent transparent;
+}
+
+/* Enter City Button */
+#enter-city-button {
+    position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%);
+    z-index: 20; background: none; border: none; padding: 0; cursor: pointer;
+}
+#enter-city-button img { display: block; width: 120px; height: auto; }
+
+/* City Markers on Map */
+.city { position: absolute; width: 25px; height: 25px; border-radius: 50%; cursor: pointer; }
+
+/* Dialogue Boxes (For NPCs in scenes) */
+.dialogue-box {
+    position: absolute; transform: translate(-50%, -110%); width: 180px;
+    background-color: rgba(240, 232, 216, 0.9); border: 1px solid #a08d7d;
+    border-radius: 6px; padding: 10px; font-size: 0.9em;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); z-index: 30; text-align: center;
+}
+.dialogue-box p { margin: 0; color: #5a3d2b; }
+.dialogue-box::after {
+    content: ""; position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%);
+    border-width: 8px 8px 0 8px; border-style: solid;
+    border-color: rgba(240, 232, 216, 0.9) transparent transparent transparent;
+}
+
+/* UI Text Elements */
+#current-location-display, #coords, #city-description, #exit-prompt {
+    margin-top: 8px; font-size: 0.95em; color: #5a3d2b;
+}
+#city-description {
+    min-height: 2.5em; background-color: rgba(255, 255, 255, 0.6);
+    padding: 5px 10px; border-radius: 4px; border: 1px solid #c8b89c;
+}
+#city-description p { margin: 0; }
+
+/* Flappy Camel Mini-Game Styles */
+#flappy-camel-container {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(197, 176, 142, 0.9); /* Sandy overlay */
+    overflow: hidden; z-index: 100;
+}
+#flappy-camel-player {
+    position: absolute; width: 80px; height: auto;
+    /* JS will set top and left */
+    left: 100px;
+}
+.flappy-obstacle {
+    position: absolute;
+    width: 60px; /* Width of the tornado sprite */
+    background-image: url('images/obstacle-sand-tornado.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+#flappy-score {
+    position: absolute; top: 10px; right: 10px;
+    font-size: 2em; color: white; text-shadow: 2px 2px #3a2d1d;
+    z-index: 101;
+}
+
+/* Utility Class */
+.hidden { display: none !important; }

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Silk Road Game - Raihona's Journey</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="bobojon_center_final.css">
+</head>
+<body>
+    <div id="game-container">
+        <h1>Silk Road Map</h1>
+
+        <div id="view-wrapper">
+
+            <div id="map-container">
+                <!-- City Markers -->
+                <div class="city" id="city-nomadic-camp" data-city-name="Nomadic Camp" title="Nomadic Camp" data-hotx="95"  data-hoty="92"></div>
+                <div class="city" id="city-bukhara"       data-city-name="Bukhara"      title="Bukhara"      data-hotx="71"  data-hoty="288"></div>
+                <div class="city" id="city-samarkand"     data-city-name="Samarkand"    title="Samarkand"    data-hotx="520" data-hoty="150"></div>
+                <div class="city" id="city-kabul"         data-city-name="Kabul"        title="Kabul"        data-hotx="479" data-hoty="343"></div>
+
+                <!-- Bobojon Map NPC (Initially Hidden) -->
+                <div id="bobojon-container" class="hidden">
+                    <img id="bobojon-sprite" src="images/bobojon.png" alt="Bobojon">
+                    <div id="bobojon-speech-bubble">
+                        <p id="bobojon-text">...</p>
+                    </div>
+                </div>
+
+                <!-- Enter City Button (Initially Hidden) -->
+                <button id="enter-city-button" class="hidden">
+                    <img src="images/enter-button.png" alt="Enter City">
+                </button>
+
+                <!-- Camels added dynamically -->
+            </div> <!-- End of #map-container -->
+
+            <!-- Samarkand Scene Container (Initially Hidden) -->
+            <div id="samarkand-scene-container" class="scene-container hidden">
+                <img id="character-dancer" class="npc" src="images/dancer-leftup-rightdown.png" alt="Dancer">
+                <div id="dancer-dialogue" class="dialogue-box hidden"><p>...</p></div>
+                <img id="character-kid" class="npc" src="images/kid-idle.png" alt="Kid">
+                <img id="character-merchant" class="npc" src="images/merchant-idle.png" alt="Merchant">
+                <div id="merchant-dialogue" class="dialogue-box hidden"><p>...</p></div>
+            </div> <!-- End of #samarkand-scene-container -->
+
+            <!-- Bukhara Scene Container (Initially Hidden) -->
+            <div id="bukhara-scene-container" class="scene-container hidden">
+                <!-- Bukhara NPCs -->
+                <img id="character-shaman" class="npc" src="images/shaman-idle.png" alt="Shaman">
+                <div id="shaman-dialogue" class="dialogue-box hidden"><p>...</p></div>
+                <img id="character-nomad" class="npc" src="images/nomad-idle.png" alt="Nomad">
+                <div id="nomad-dialogue" class="dialogue-box hidden"><p>...</p></div>
+                <img id="character-magic-camel" class="npc" src="images/magic-camel-idle.png" alt="Magic Camel">
+                <div id="magic-camel-dialogue" class="dialogue-box hidden"><p>...</p></div>
+                
+                <!-- Flappy Camel Mini-Game UI -->
+                <div id="flappy-camel-container" class="hidden">
+                    <div id="flappy-score">Score: 0</div>
+                    <img id="flappy-camel-player" src="images/magic-carpet-camel.png" alt="Flappy Camel">
+                    <!-- Obstacles will be added here by JS -->
+                </div>
+            </div> <!-- End of #bukhara-scene-container -->
+
+            <!-- Other Scene Containers -->
+            <div id="kabul-scene-container" class="scene-container hidden"></div>
+            <div id="yurt-scene-container" class="scene-container hidden"></div>
+
+        </div> <!-- *** END OF VIEW WRAPPER *** -->
+
+        <!-- Raihona's Sprite (Moved by JS) -->
+        <img id="raihona-sprite" src="images/raihona-idle-right.png" alt="Raihona">
+
+        <!-- UI Elements -->
+        <p id="current-location-display">Loading journey...</p>
+        <p id="coords">Position: (0, 0)</p>
+        <div id="city-description">
+            <p>Welcome, traveler. Begin your journey on the Silk Road.</p>
+        </div>
+        <p id="exit-prompt" class="hidden">Press 'Esc' to return to the map.</p>
+
+    </div> <!-- End of #game-container -->
+
+    <!-- === The ONLY JavaScript File Needed === -->
+    <script src="game.js"></script>
+
+</body>
+</html>

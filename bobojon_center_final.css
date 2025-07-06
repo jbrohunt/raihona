@@ -1,0 +1,43 @@
+/* This file overrides the default Bobojon styles to place him at the top-center. */
+
+#bobojon-container {
+    /* Override existing bottom/right positioning from style.css */
+    bottom: auto;
+    right: auto;
+
+    /* New positioning: Top center */
+    top: 20px; /* Distance from the top of the map container */
+    left: 50%;
+    transform: translateX(-50%); /* This is what horizontally centers the container */
+
+    /* Ensure it stays above other map elements if necessary */
+    z-index: 10;
+}
+
+#bobojon-sprite {
+    /* Ensure sprite itself is positioned normally within its container */
+    position: relative;
+    display: block; /* Prevents potential inline spacing issues */
+    margin: 0 auto; /* Helps ensure centering if container width changes */
+}
+
+#bobojon-speech-bubble {
+    /* Change positioning to be BELOW the sprite now */
+    top: 100%; /* Position the top of the bubble at the bottom of the sprite */
+    bottom: auto; /* Remove the old bottom positioning */
+    margin-top: 15px; /* Add space between sprite's bottom and bubble's top */
+
+    /* Keep horizontal centering relative to the container */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#bobojon-speech-bubble::after {
+    /* Flip the triangle to point UP */
+    top: -10px; /* Position triangle at the top of the bubble, pointing up */
+    bottom: auto; /* Remove old bottom positioning */
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 0 10px 10px 10px; /* Flipped border */
+    border-color: transparent transparent rgba(255, 255, 255, 0.85) transparent;
+}
